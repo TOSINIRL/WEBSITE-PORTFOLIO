@@ -5,6 +5,7 @@ import { Hero } from '@/components/hero';
 import { About } from '@/components/about';
 import { Marquee } from '@/components/marquee';
 import { Work } from '@/components/work';
+import { SocialLinks } from '@/components/social-links';
 import { Contact } from '@/components/contact';
 import { SystemInfra } from '@/components/system-infra';
 import { Footer } from '@/components/footer';
@@ -31,6 +32,7 @@ export default function Home() {
           <About />
           <Marquee />
           <Work />
+          <SocialLinks />
           <Contact />
           <SystemInfra />
         </main>
