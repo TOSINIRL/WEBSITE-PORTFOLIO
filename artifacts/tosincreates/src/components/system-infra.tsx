@@ -80,7 +80,7 @@ export function SystemInfra() {
               <FaReact title="Next.js" />
               <FaHtml5 title="HTML5" />
               <FaCss3Alt title="CSS3" />
-              <Brain size={27} title="Agentic AI" />
+              <Brain size={27} aria-label="Agentic AI" />
             </div>
             <div className="stack-text">AGENTIC_V2_CORE</div>
           </motion.div>
