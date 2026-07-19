@@ -10,7 +10,7 @@ export function Preloader({ onComplete }: Props) {
   useEffect(() => {
     let current = 0;
     const total = 100;
-    const duration = 2200;
+    const duration = 1800;
     const step = duration / total;
 
     const id = setInterval(() => {
@@ -20,8 +20,8 @@ export function Preloader({ onComplete }: Props) {
         clearInterval(id);
         setTimeout(() => {
           setVisible(false);
-          setTimeout(onComplete, 550);
-        }, 280);
+          setTimeout(onComplete, 650);
+        }, 240);
       }
     }, step);
 
@@ -33,8 +33,8 @@ export function Preloader({ onComplete }: Props) {
       {visible && (
         <motion.div
           id="preloader"
-          exit={{ opacity: 0, scale: 1.04 }}
-          transition={{ duration: 0.55, ease: 'easeInOut' }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.65, ease: 'easeInOut' }}
         >
           <div className="mob-container">
             <div className="shigeo-aura" />
@@ -42,7 +42,7 @@ export function Preloader({ onComplete }: Props) {
               <span id="load-count">{String(count).padStart(2, '0')}</span>
               <span className="mob-percent">%</span>
             </div>
-            <div className="mob-status">Synchronizing Digital Aura</div>
+            <div className="mob-status">System Charging</div>
           </div>
         </motion.div>
       )}

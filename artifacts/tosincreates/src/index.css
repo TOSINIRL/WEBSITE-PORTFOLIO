@@ -195,14 +195,10 @@
 #preloader {
     position: fixed;
     inset: 0;
-    top: 0;
-    left: 0;
     width: 100vw;
     height: 100dvh;
     min-height: 100vh;
-    background:
-        linear-gradient(180deg, rgba(48, 0, 0, 0.96) 0%, rgba(68, 0, 0, 0.94) 100%),
-        #140000;
+    background: #05060A;
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -216,12 +212,12 @@
     position: fixed;
     inset: -30vmax;
     background:
-        radial-gradient(circle at 50% 50%, rgba(255, 62, 62, 0.42) 0%, rgba(255, 62, 62, 0.2) 38%, rgba(255, 62, 62, 0) 78%),
-        radial-gradient(circle at 12% 12%, rgba(255, 45, 45, 0.2) 0%, rgba(255, 45, 45, 0) 48%),
-        radial-gradient(circle at 88% 12%, rgba(255, 45, 45, 0.2) 0%, rgba(255, 45, 45, 0) 48%),
-        radial-gradient(circle at 12% 88%, rgba(255, 45, 45, 0.2) 0%, rgba(255, 45, 45, 0) 48%),
-        radial-gradient(circle at 88% 88%, rgba(255, 45, 45, 0.2) 0%, rgba(255, 45, 45, 0) 48%);
-    filter: blur(22px);
+        radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.18) 0%, rgba(0, 240, 255, 0.08) 38%, rgba(0, 240, 255, 0) 70%),
+        radial-gradient(circle at 12% 12%, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0) 45%),
+        radial-gradient(circle at 88% 12%, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0) 45%),
+        radial-gradient(circle at 12% 88%, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0) 45%),
+        radial-gradient(circle at 88% 88%, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0) 45%);
+    filter: blur(26px);
     z-index: 0;
     pointer-events: none;
 }
@@ -231,6 +227,10 @@
     text-align: center;
     width: 100%;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .status-pulse {
@@ -268,66 +268,64 @@
 }
 
 .mob-counter {
-    font-size: clamp(8rem, 35vw, 25rem);
+    font-size: clamp(7rem, 28vw, 18rem);
     font-weight: 400;
-    line-height: 0.8;
-    color: #ff3e3e;
-    /* Intense Mob Red */
+    line-height: 0.85;
+    color: #00F0FF;
     font-family: 'Anton', sans-serif;
     letter-spacing: -2px;
     margin-bottom: 0;
     display: flex;
     align-items: baseline;
     justify-content: center;
-    text-shadow: 0 0 40px rgba(255, 62, 62, 0.3);
+    text-shadow:
+        0 0 20px rgba(0, 240, 255, 0.55),
+        0 0 60px rgba(0, 240, 255, 0.25),
+        0 0 120px rgba(0, 240, 255, 0.12);
     will-change: transform, opacity;
 }
 
 .mob-percent {
-    font-size: 0.25em;
-    margin-left: 5px;
-    color: #ff3e3e;
+    font-size: 0.35em;
+    margin-left: 0.08em;
+    color: #00F0FF;
+    align-self: flex-start;
+    transform: translateY(0.12em);
+    text-shadow:
+        0 0 15px rgba(0, 240, 255, 0.55),
+        0 0 40px rgba(0, 240, 255, 0.25);
 }
 
 .mob-status {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 8px;
-    color: #ff3e3e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #00F0FF;
     text-transform: uppercase;
-    margin-top: 20px;
-    opacity: 0.6;
+    margin-top: 24px;
+    opacity: 0.45;
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
 }
 
 .shigeo-aura {
     position: fixed;
     inset: -40vmax;
-    transform: none;
     width: auto;
     height: auto;
     background:
-        radial-gradient(circle at center, rgba(255, 62, 62, 0.5) 0%, rgba(255, 62, 62, 0.3) 34%, rgba(255, 62, 62, 0.08) 56%, rgba(255, 62, 62, 0) 80%),
-        radial-gradient(circle at 50% 30%, rgba(255, 70, 70, 0.2) 0%, rgba(255, 70, 70, 0) 58%);
+        radial-gradient(circle at center, rgba(0, 240, 255, 0.22) 0%, rgba(0, 240, 255, 0.12) 34%, rgba(0, 240, 255, 0.04) 56%, rgba(0, 240, 255, 0) 80%),
+        radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.08) 0%, rgba(0, 240, 255, 0) 58%);
     filter: blur(24px);
     z-index: 1;
-    opacity: 0;
+    opacity: 0.6;
+    animation: aura-breathe 3.5s ease-in-out infinite;
     will-change: opacity;
 }
 
-/* Jitter / Shake for High Intensity */
-.mob-intensity-high .mob-counter {
-    animation: mob-jitter 0.08s infinite alternate;
-}
-
-@keyframes mob-jitter {
-    0% {
-        transform: translate(2px, 2px) scale(1.02);
-    }
-
-    100% {
-        transform: translate(-2px, -2px) scale(0.98);
-    }
+@keyframes aura-breathe {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 0.75; }
 }
 
 .about-card {
