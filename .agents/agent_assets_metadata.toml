@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "MjUvEGVIO1b8NXMfQtx_Q"
+uri = "file://screenshots/tosincreates-redesign-v1.jpg"
+type = "image"
+title = "Tosincreates Redesign Preview"
