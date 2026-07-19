@@ -15,14 +15,17 @@ export default function Home() {
 
   return (
     <>
+      <div className="bg-grid" />
       <div className="noise-overlay" />
+      
       <Preloader onComplete={() => setReady(true)} />
 
       {/* Fade in main content after preloader */}
       <div
+        className="relative z-10"
         style={{
           opacity: ready ? 1 : 0,
-          transition: 'opacity 0.6s ease',
+          transition: 'opacity 1s ease',
           visibility: ready ? 'visible' : 'hidden',
         }}
       >
