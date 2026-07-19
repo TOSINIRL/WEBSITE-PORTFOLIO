@@ -1,0 +1,497 @@
+<!-- DEPLOY_ID: 20260421_0252 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Tosin Creates | Creative Web Development & Designer (v209)</title>
+    <!-- CACHE_BUST: 2026-07-09-02-40 -->
+
+    <link rel="icon" type="image/png" href="assets/images/tc_media_hub_logo.png?v=23">
+    <link rel="shortcut icon" href="assets/images/tc_media_hub_logo.png?v=23">
+    <link rel="apple-touch-icon" href="assets/images/tc_media_hub_logo.png?v=24">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&family=Gochi+Hand&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=218">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Premium Preloader -->
+    <!-- Mob Psycho Inspired Loading Screen -->
+    <div id="preloader">
+        <div class="mob-container">
+            <div class="shigeo-aura"></div>
+            <div class="mob-counter">
+                <span id="load-count">00</span>
+                <span class="mob-percent">%</span>
+            </div>
+            <div class="mob-status">Synchronizing Digital Aura</div>
+        </div>
+    </div>
+
+    <div class="noise-overlay"></div>
+
+
+    <!-- Pro-Dashboard Header (Based on Screenshot) -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <div class="logo">TOSIN<span>CREATES</span></div>
+        </div>
+
+        <nav class="header-center">
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <div class="header-status">
+                <span class="status-loc">TORONTO</span>
+                <span class="status-sep">|</span>
+                <span class="status-time" id="headerTime">00:00:00</span>
+            </div>
+
+            <div id="themeToggle" class="theme-switch" aria-label="Toggle Theme">
+                <i class="fas fa-moon moon-icon"></i>
+                <i class="fas fa-sun sun-icon"></i>
+                <div class="theme-dot"></div>
+            </div>
+            <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobileNav" class="mobile-nav-overlay">
+        <div class="mobile-nav-content">
+            <ul class="mobile-nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#work">WORK</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+            <div class="mobile-nav-footer">
+
+                <div class="status-badge">
+                    <div class="status-pulse"></div>
+                    <span>SYS_MOBILE_UPLINK_READY</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section: Premium Technical Focus -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="badge">AGENTIC AI POWERED</div>
+                <h1>Crafting Digital Excellence</h1>
+                <p>Bespoke luxury web design & premium digital experiences built with 2026-grade AI technology.</p>
+                <div class="hero-btns">
+                    <a href="#work" class="btn btn-primary">View Portfolio</a>
+                    <a href="#contact" class="btn btn-outline">Start Project</a>
+                </div>
+                <div class="hero-system-clock">
+                    <div class="clock-prefix">SYS_CORE_UPLINK // TORONTO</div>
+                    <div class="clock-time" id="heroClock">00:00:00</div>
+                    <div class="clock-status">
+                        <span class="status-dot"></span>
+                        SIGNAL_STRENGTH_MAXIMIZED
+                    </div>
+                </div>
+                <div class="hero-watermark">
+                    <span class="watermark-text">TOSIN</span>
+                    <span class="watermark-text">CREATES</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Mission Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-card">
+                    <!-- Left accent bar -->
+                    <div class="about-accent-bar"></div>
+
+                    <!-- Main content -->
+                    <div class="about-inner">
+                        <div class="about-content-left">
+                            <div class="about-top">
+                                <span class="about-eyebrow">Current Mission</span>
+                                <div class="about-divider"></div>
+                            </div>
+                            <h2 class="about-heading">
+                                The Intersection of<br>
+                                <span class="about-heading-highlight">Luxury &amp; Logic</span>
+                            </h2>
+                        </div>
+
+                        <div class="about-content-right">
+                            <p class="about-para">
+                                I am a creative web developer focused on mastering the transition from
+                                <em>'AI power user'</em> to building AI&#8209;driven digital ecosystems.
+                                My workflow is built on agentic systems, allowing me to ship premium,
+                                custom&#8209;coded solutions at record speed.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Ecosystem Grid: Agentic Log & Daily Mission -->
+                <div class="ecosystem-grid">
+                    <!-- Agentic Log -->
+                    <div class="system-card terminal-card">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="terminal-title">AGENTIC_LOG.EXE</div>
+                        </div>
+                        <div class="terminal-body" id="agenticLog">
+                            <div class="log-line">> Initiating agentic sequence...</div>
+                            <div class="log-line">> Scanning for luxury assets...</div>
+                        </div>
+                    </div>
+
+                    <!-- Daily Mission -->
+                    <div class="system-card mission-card">
+                        <div class="about-top">
+                            <span class="about-eyebrow">Intel Report</span>
+                        </div>
+                        <h3 class="mission-title">Current Focus</h3>
+                        <p class="mission-desc">Mastering Advanced Agentic Workflows & Multi-Agent Orchestration for
+                            2026 Web Ecosystems.</p>
+                        <div class="mission-status">
+                            <div class="status-pulse"></div>
+                            <span>ACTIVE RESEARCH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Marquee -->
+        <div class="tech-marquee-wrap">
+            <div class="tech-marquee">
+                <div class="marquee-content">
+                    <span>GSAP</span><span>•</span>
+                    <span>JAVASCRIPT</span><span>•</span>
+                    <span>NEXT.JS</span><span>•</span>
+                    <span>AGENTIC AI</span><span>•</span>
+                    <span>UX DESIGN</span><span>•</span>
+                    <span>LUXURY CODE</span><span>•</span>
+                    <!-- Duplicate for infinite scroll -->
+                    <span>GSAP</span><span>•</span>
+                    <span>JAVASCRIPT</span><span>•</span>
+                    <span>NEXT.JS</span><span>•</span>
+                    <span>AGENTIC AI</span><span>•</span>
+                    <span>UX DESIGN</span><span>•</span>
+                    <span>LUXURY CODE</span><span>•</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Section: Cases Studies (Pro Grid) -->
+        <section class="work" id="work">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Case Studies</h2>
+                    <p>Selection of high-end digital solutions for ambitious brands.</p>
+
+                    <div class="view-controls">
+                        <button id="gridViewBtn" class="view-btn active"><i class="fas fa-th-large"></i> GRID</button>
+                        <button id="listViewBtn" class="view-btn"><i class="fas fa-list"></i> LIST</button>
+                    </div>
+                </div>
+
+                <div class="project-grid">
+                    <!-- 1. IT Chic Travels -->
+                    <div class="project-card dashboard-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/it_chic_logo.png" alt="IT Chic Travels" class="project-img">
+                            <div class="card-overlay">
+                                <span class="card-badge live">LIVE</span>
+                                <div class="card-tags">
+                                    <span class="tag">Luxury UX</span>
+                                    <span class="tag">GSAP</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>IT Chic Travels</h3>
+                            <p>Luxury travel boutique with cinematic storytelling.</p>
+                            <a href="https://itchictravels.netlify.app/" class="card-btn" target="_blank">View Project
+                                <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 2. PureHearted Studioz -->
+                    <div class="project-card dashboard-card item-pure">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/purehearted_logo_v2.png" alt="PureHearted Studioz"
+                                class="project-img">
+                            <div class="card-overlay">
+                                <span class="card-badge new">NEW</span>
+                                <div class="card-tags">
+                                    <span class="tag">Clean UI</span>
+                                    <span class="tag">Vite</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>PureHearted Studioz</h3>
+                            <p>Minimalist, high-performance studio platform.</p>
+                            <a href="https://pureheartedstudioz.com" class="card-btn" target="_blank">View Project <i
+                                    class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 3. BeautyybyyKiKi -->
+                    <div class="project-card dashboard-card item-beauty">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/beautyybyykiki_logo_v2.png" alt="BeautyybyyKiKi"
+                                class="project-img">
+                            <div class="card-overlay">
+                                <span class="card-badge deployed">DEPLOYED</span>
+                                <div class="card-tags">
+                                    <span class="tag">Booking</span>
+                                    <span class="tag">Branding</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>BeautyybyyKiKi</h3>
+                            <p>Professional booking & portfolio for hair artistry.</p>
+                            <a href="https://tosinirl.github.io/beautyybyykiki/" class="card-btn" target="_blank">View
+                                Project <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 4. Payless Moving -->
+                    <div class="project-card dashboard-card item-payless">
+                        <div class="card-image-wrapper">
+                            <img src="assets/images/payless_logo.png" alt="Payless Moving" class="project-img">
+                            <div class="card-overlay">
+                                <span class="card-badge active">ACTIVE</span>
+                                <div class="card-tags">
+                                    <span class="tag">SEO</span>
+                                    <span class="tag">Forms</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <h3>Payless Moving</h3>
+                            <p>Refined logistics for local delivery excellence.</p>
+                            <a href="https://tosinirl.github.io/PAYLESSMOVING/" class="card-btn" target="_blank">View
+                                Project <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+
+
+
+
+                </div> <!-- End project-grid -->
+            </div> <!-- End container -->
+        </section> <!-- End work section -->
+        <!-- Metrics Removed -->
+
+
+        <!-- Social Nexus: Discord + YouTube -->
+        <section id="community" class="social-nexus reveal-on-scroll">
+            <div class="container">
+                <div class="social-nexus-grid">
+                    <a href="https://discord.gg/RSez8hxtJS" target="_blank" class="nexus-card nexus-discord"
+                        aria-label="Join Discord community">
+                        <span class="nexus-orb"><i class="fab fa-discord"></i></span>
+                        <h3>Discord</h3>
+                        <span class="nexus-cta">JOIN THE LITTEST FUNCTION<i class="fas fa-arrow-right"></i></span>
+                        <span class="nexus-pulse" aria-hidden="true"></span>
+                    </a>
+
+                    <a href="https://youtube.com/@tosinirl?sub_confirmation=1" target="_blank"
+                        class="nexus-card nexus-youtube" aria-label="Subscribe on YouTube">
+                        <span class="nexus-orb"><i class="fab fa-youtube"></i></span>
+                        <h3>YouTube</h3>
+                        <span class="nexus-cta">I KNOW YOUR SEEING THIS RN
+                            & AINT YOU SUB YET?...CRAZY<i class="fas fa-arrow-right"></i></span>
+                        <span class="nexus-pulse" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Console: The Grand Finale -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-card">
+                    <div class="contact-inner">
+                        <div class="about-top">
+                            <span class="about-eyebrow">Direct Uplink</span>
+                        </div>
+                        <h2 class="contact-heading">Ready to Build<br><span
+                                class="about-heading-highlight">Excellence?</span></h2>
+                        <p class="contact-desc">Currently accepting premium projects and high-end collaborations for
+                            2026.</p>
+                        <div class="contact-btns">
+                            <a href="mailto:contact@tosincreates.com" class="btn btn-primary">Start Transmission</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- System Infrastructure: The Support Layer -->
+        <section class="system-infra">
+            <div class="container">
+                <div class="infra-grid">
+                    <!-- Node 1: Terminal Status -->
+                    <div class="infra-card">
+                        <div class="infra-header">
+                            <span class="infra-label">UPLINK_STATUS</span>
+                            <div class="status-indicator">
+                                <div class="status-pulse green"></div>
+                                <span class="pulse-text">STABLE</span>
+                            </div>
+                        </div>
+                        <div class="infra-body">
+                            <div class="infra-stat">
+                                <span class="stat-key">LATENCY</span>
+                                <span class="stat-value">12ms</span>
+                            </div>
+                            <div class="infra-stat">
+                                <span class="stat-key">UPTIME</span>
+                                <span class="stat-value">99.9%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 2: Global Clocks -->
+                    <div class="infra-card">
+                        <div class="infra-header">
+                            <span class="infra-label">GLOBAL_NODES</span>
+                        </div>
+                        <div class="infra-body nodes">
+                            <div class="node-item">
+                                <span class="node-loc">LONDON</span>
+                                <span class="node-time" id="clockLDN">00:00:00</span>
+                            </div>
+                            <div class="node-item">
+                                <span class="node-loc">TOKYO</span>
+                                <span class="node-time" id="clockTKY">00:00:00</span>
+                            </div>
+                            <div class="node-item">
+                                <span class="node-loc">TORONTO</span>
+                                <span class="node-time" id="clockYYZ">00:00:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Node 3: Tech Stack -->
+                    <div class="infra-card stack-card">
+                        <div class="infra-header">
+                            <span class="infra-label">CORE_MANIFEST</span>
+                        </div>
+                        <div class="stack-icons">
+                            <i class="fab fa-js" title="JavaScript"></i>
+                            <i class="fab fa-react" title="Next.js"></i>
+                            <i class="fab fa-html5" title="HTML5"></i>
+                            <i class="fab fa-css3-alt" title="CSS3"></i>
+                            <i class="fas fa-brain" title="Agentic AI"></i>
+                        </div>
+                        <div class="stack-text">AGENTIC_V2_CORE</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <div class="logo">TOSIN<span>CREATES</span></div>
+                    <p class="brand-tagline">Bespoke luxury web design & premium digital experiences built with
+                        2026-grade AI technology.</p>
+
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Ecosystem</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Agentic Logs</a></li>
+                        <li><a href="#">System Specs</a></li>
+                        <li><a href="#">Design Ethics</a></li>
+                        <li><a href="#">Legal Uplink</a></li>
+                    </ul>
+                </div>
+            </div> <!-- End .footer-grid -->
+
+            <div class="footer-bottom-grid">
+                <!-- Agentic Log Hub -->
+                <div class="system-card terminal-card footer-terminal">
+                    <div class="card-header">
+                        <div class="header-left">
+                            <i class="fas fa-terminal"></i>
+                            <span class="card-title">SYS_AGENT_LOG</span>
+                        </div>
+                        <div class="header-right">
+                            <span class="status-pulse"></span>
+                            <span class="status-text">LIVE_SYNC</span>
+                        </div>
+                    </div>
+                    <div class="terminal-body" id="agenticLog">
+                        <!-- Logs inject here -->
+                    </div>
+                </div>
+
+                <div class="footer-col status-col">
+                    <h4 class="footer-title">System Status</h4>
+                    <div class="footer-status-item">
+                        <div class="status-pulse"></div>
+                        <span>ALL_SYSTEMS_OPERATIONAL</span>
+                    </div>
+                    <div class="footer-status-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>ENCRYPTED_SESSION_ACTIVE</span>
+                    </div>
+                    <p class="footer-version">BUILD_VER: 209.2-FINAL</p>
+                    <p class="copyright">© 2026 TOSIN CREATES.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="main.js?v=206.5"></script>
+</body>
+
+</html>

@@ -1,48 +1,90 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useWorldClocks } from '@/hooks/use-world-clocks';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { toronto } = useWorldClocks();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollTo = (id: string) => {
+    setMenuOpen(false);
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 flex items-center justify-between transition-all duration-300 ${
-        scrolled ? 'bg-background/80 backdrop-blur-md border-b border-border/50 py-4' : 'bg-transparent'
-      }`}
-    >
-      <div 
-        className="text-xl md:text-2xl font-display font-bold tracking-tighter cursor-pointer"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+    <>
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`dashboard-header${scrolled ? ' scrolled' : ''}`}
       >
-        tosin<span className="text-primary">creates</span>
-      </div>
-      <div className="flex items-center gap-6 md:gap-10 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-        {['work', 'about', 'contact'].map((item) => (
+        {/* Left: Logo */}
+        <div className="header-left">
+          <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            TOSIN<span>CREATES</span>
+          </div>
+        </div>
+
+        {/* Center: Nav */}
+        <nav className="header-center">
+          <ul className="nav-links">
+            {['home', 'about', 'work'].map((item) => (
+              <li key={item}>
+                <a href={`#${item}`} onClick={(e) => { e.preventDefault(); scrollTo(item); }}>
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Right: Status + mobile btn */}
+        <div className="header-right">
+          <div className="header-status">
+            <span className="status-loc">TORONTO</span>
+            <span className="status-sep">|</span>
+            <span className="status-time" id="headerTime">{toronto}</span>
+          </div>
           <button
-            key={item}
-            onClick={() => scrollTo(item)}
-            className="hover:text-primary transition-colors duration-300"
+            className={`mobile-menu-btn${menuOpen ? ' open' : ''}`}
+            aria-label="Toggle Menu"
+            onClick={() => setMenuOpen((v) => !v)}
           >
-            {item}
+            <span />
+            <span />
           </button>
-        ))}
+        </div>
+      </motion.header>
+
+      {/* Mobile Nav Overlay */}
+      <div id="mobileNav" className={`mobile-nav-overlay${menuOpen ? ' open' : ''}`}>
+        <div className="mobile-nav-content">
+          <ul className="mobile-nav-links">
+            {['home', 'about', 'work', 'contact'].map((item) => (
+              <li key={item}>
+                <a href={`#${item}`} onClick={(e) => { e.preventDefault(); scrollTo(item); }}>
+                  {item.toUpperCase()}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="mobile-nav-footer">
+            <div className="status-badge">
+              <div className="status-pulse" />
+              <span>SYS_MOBILE_UPLINK_READY</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </motion.nav>
+    </>
   );
 }
