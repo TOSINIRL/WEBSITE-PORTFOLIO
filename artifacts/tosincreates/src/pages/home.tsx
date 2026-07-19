@@ -1,36 +1,43 @@
+import { useState } from 'react';
+import { Preloader } from '@/components/preloader';
 import { Navbar } from '@/components/navbar';
 import { Hero } from '@/components/hero';
-import { Work } from '@/components/work';
 import { About } from '@/components/about';
+import { Marquee } from '@/components/marquee';
+import { Work } from '@/components/work';
+import { SocialNexus } from '@/components/social-nexus';
 import { Contact } from '@/components/contact';
+import { SystemInfra } from '@/components/system-infra';
 import { Footer } from '@/components/footer';
-import { motion, useScroll, useSpring } from 'framer-motion';
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const [ready, setReady] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-black">
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-primary z-[100] origin-left" 
-        style={{ scaleX }} 
-      />
-      
-      <Navbar />
-      
-      <main>
-        <Hero />
-        <Work />
-        <About />
-        <Contact />
-      </main>
+    <>
+      <div className="noise-overlay" />
+      <Preloader onComplete={() => setReady(true)} />
 
-      <Footer />
-    </div>
+      {/* Fade in main content after preloader */}
+      <div
+        style={{
+          opacity: ready ? 1 : 0,
+          transition: 'opacity 0.6s ease',
+          visibility: ready ? 'visible' : 'hidden',
+        }}
+      >
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Marquee />
+          <Work />
+          <SocialNexus />
+          <Contact />
+          <SystemInfra />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
