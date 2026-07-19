@@ -55,7 +55,7 @@ export function Navbar() {
             <span className="status-time" id="headerTime">{toronto}</span>
           </div>
           <button
-            className={`mobile-menu-btn${menuOpen ? ' open' : ''}`}
+            className={`mobile-menu-btn${menuOpen ? ' active' : ''}`}
             aria-label="Toggle Menu"
             onClick={() => setMenuOpen((v) => !v)}
           >
@@ -66,7 +66,7 @@ export function Navbar() {
       </motion.header>
 
       {/* Mobile Nav Overlay */}
-      <div id="mobileNav" className={`mobile-nav-overlay${menuOpen ? ' open' : ''}`}>
+      <div id="mobileNav" className={`mobile-nav-overlay${menuOpen ? ' active' : ''}`}>
         <div className="mobile-nav-content">
           <ul className="mobile-nav-links">
             {['home', 'about', 'work', 'contact'].map((item) => (

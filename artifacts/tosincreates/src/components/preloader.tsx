@@ -32,7 +32,7 @@ export function Preloader({ onComplete }: Props) {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="preloader"
+          id="preloader"
           exit={{ opacity: 0, scale: 1.04 }}
           transition={{ duration: 0.55, ease: 'easeInOut' }}
         >
