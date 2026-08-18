@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">IT Chic Travels Logo</title>
+  <desc id="desc">Luxury travel logo featuring a clear airplane silhouette with a dark-skinned woman profile emblem.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fafbfd"/>
+      <stop offset="55%" stop-color="#eef3f5"/>
+      <stop offset="100%" stop-color="#e2eaee"/>
+    </linearGradient>
+
+    <radialGradient id="mist" cx="52%" cy="30%" r="62%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/>
+      <stop offset="75%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#67d6df"/>
+      <stop offset="100%" stop-color="#2f9da8"/>
+    </linearGradient>
+
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a27b56"/>
+      <stop offset="100%" stop-color="#7a593d"/>
+    </linearGradient>
+
+    <linearGradient id="headwrap" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#79dfe6"/>
+      <stop offset="100%" stop-color="#3ab7c4"/>
+    </linearGradient>
+
+    <linearGradient id="planeBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef4f7"/>
+      <stop offset="100%" stop-color="#d6e2e8"/>
+    </linearGradient>
+
+    <linearGradient id="planeTrim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#66d6df"/>
+      <stop offset="100%" stop-color="#2d98a3"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="170%" height="170%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.2"/>
+    </filter>
+
+    <clipPath id="windowClip">
+      <circle cx="-54" cy="40" r="88"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#mist)"/>
+
+    <g transform="translate(500,315)" filter="url(#softShadow)">
+      <path d="M -338 54 C -314 6 -243 -30 -157 -30 L 286 -30 C 332 -30 373 -12 400 16 L 464 17 C 492 17 516 36 522 63 C 516 90 492 109 464 109 L 400 110 C 373 138 332 156 286 156 L -157 156 C -243 156 -314 120 -338 72 Z"
+        fill="url(#planeBody)" stroke="url(#planeTrim)" stroke-width="9"/>
+
+      <path d="M -204 54 L -300 -44 L -258 64 Z" fill="#dde8ed" stroke="url(#planeTrim)" stroke-width="9"/>
+      <path d="M -26 156 L 163 247 L 186 194 L 46 132 Z" fill="#dde8ed" stroke="url(#planeTrim)" stroke-width="9"/>
+      <path d="M 96 -30 L 251 -128 L 229 -31 Z" fill="#dde8ed" stroke="url(#planeTrim)" stroke-width="9"/>
+
+      <circle cx="-80" cy="62" r="100" fill="#f5f9fb" stroke="url(#ring)" stroke-width="8"/>
+
+      <g clip-path="url(#windowClip)">
+    <path d="M -138 150 C -126 90 -122 40 -99 -4 C -69 -66 -8 -98 57 -91 C 98 -86 136 -61 156 -24 C 131 -14 104 9 90 44 C 74 79 70 117 48 150 Z"
+      fill="url(#skin)"/>
+
+    <path d="M -161 2 C -149 -72 -87 -124 -11 -128 C 47 -132 100 -109 136 -69 C 101 -61 71 -41 54 -10 C 20 -22 -12 -20 -45 -11 C -83 0 -118 12 -161 2 Z"
+      fill="url(#headwrap)"/>
+
+    <path d="M -125 -28 C -86 -75 -11 -95 52 -72 C 16 -61 -12 -37 -26 -7 C -50 -16 -77 -18 -103 -13 C -112 -11 -119 -9 -126 -6 Z"
+      fill="#2d8f98" opacity="0.45"/>
+
+    <path d="M -14 -7 C 15 -9 40 3 55 26 C 32 21 11 21 -10 25 Z" fill="#6a4734" opacity="0.5"/>
+    <path d="M 0 27 C 31 27 58 41 71 63 C 47 56 25 52 1 54 Z" fill="#6a4734" opacity="0.5"/>
+    <path d="M -50 -43 C -39 -51 -26 -55 -12 -53" fill="none" stroke="#2a2a2a" stroke-width="3.6" stroke-linecap="round" opacity="0.65"/>
+    <path d="M -52 -16 C -41 -24 -28 -28 -14 -26" fill="none" stroke="#2a2a2a" stroke-width="3.6" stroke-linecap="round" opacity="0.62"/>
+      </g>
+
+      <path d="M 486 76 C 520 60 559 49 602 42 L 575 69 L 606 88 C 570 92 535 108 498 131 Z"
+        fill="none" stroke="url(#ring)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <g fill="#a6b8c2" opacity="0.7">
+    <circle cx="42" cy="63" r="8"/>
+    <circle cx="80" cy="63" r="8"/>
+    <circle cx="118" cy="63" r="8"/>
+    <circle cx="156" cy="63" r="8"/>
+    <circle cx="194" cy="63" r="8"/>
+    <circle cx="232" cy="63" r="8"/>
+    <circle cx="270" cy="63" r="8"/>
+      </g>
+  </g>
+
+  <text x="800" y="650" text-anchor="middle" fill="#111827"
+      font-family="'Playfair Display', 'Times New Roman', serif"
+      font-size="108" letter-spacing="8">IT CHIC TRAVELS</text>
+
+  <text x="800" y="718" text-anchor="middle" fill="#374151"
+        font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
+        font-size="34" letter-spacing="9">MAKE MEMORIES | REMINISCE | REPEAT</text>
+
+  <rect x="0" y="0" width="1600" height="900" fill="none" stroke="#d8e0e4" stroke-width="2" opacity="0.68"/>
+</svg>

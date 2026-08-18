@@ -219,7 +219,12 @@
                     <!-- 1. IT Chic Travels -->
                     <div class="project-card dashboard-card">
                         <div class="card-image-wrapper">
-                            <img src="assets/images/it_chic_logo.png" alt="IT Chic Travels" class="project-img">
+                            <div class="card-banner-media flex items-center justify-center">
+                                <img src="attached_assets/Screenshot_2026-07-19_at_3.31.44_AM_1784479513392.png"
+                                    alt="IT CHIC TRAVELS logo"
+                                    class="project-img it-chic-logo object-contain max-h-[140px] w-auto h-auto mx-auto"
+                                    loading="lazy" decoding="async">
+                            </div>
                             <div class="card-overlay">
                                 <span class="card-badge live">LIVE</span>
                                 <div class="card-tags">

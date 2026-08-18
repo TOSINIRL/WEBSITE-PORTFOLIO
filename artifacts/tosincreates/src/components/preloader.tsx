@@ -36,9 +36,10 @@ export function Preloader({ onComplete }: Props) {
           className="fixed inset-0 bg-[#05060A] z-[9999] flex flex-col items-center justify-center overflow-hidden"
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'opacity, transform' }}
         >
           {/* Intense core glow */}
-          <div className="absolute inset-[-50%] bg-[radial-gradient(circle_at_center,rgba(255,42,42,0.15)_0%,transparent_50%)] blur-[50px] animate-pulse" />
+          <div className="absolute inset-[-50%] bg-[radial-gradient(circle_at_center,rgba(255,42,42,0.12)_0%,transparent_50%)] blur-[24px] animate-pulse" />
           
           <div className="relative z-10 text-center flex flex-col items-center">
             
