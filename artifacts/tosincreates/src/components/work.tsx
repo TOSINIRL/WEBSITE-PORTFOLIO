@@ -90,21 +90,6 @@ const FALLBACK_PROJECTS: Project[] = [
     }
   },
   {
-    id: "purehearted-studioz",
-    title: "PureHearted Studioz",
-    subtitle: "Minimalist Studio Platform",
-    category: "Brand & UI",
-    description: "Minimalist, high-performance creative studio platform featuring high-density portfolio galleries and dark mode aesthetics.",
-    detailedOverview: "High-impact visual showcase for elite brand storytelling, media production, and sound design portfolio presentation.",
-    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
-    tags: ["Clean UI", "Vite", "Design System"],
-    link: "https://pureheartedstudioz.com",
-    stats: {
-      "Performance": "99/100",
-      "LCP": "0.4s"
-    }
-  },
-  {
     id: "beautyybyykiki",
     title: "BeautyybyyKiKi",
     subtitle: "Luxury Hair Studio Website",
