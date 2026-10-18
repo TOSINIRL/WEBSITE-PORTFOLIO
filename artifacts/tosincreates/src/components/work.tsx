@@ -240,10 +240,15 @@ export function Work() {
                         </span>
                       ))}
                     </div>
-                    
-                    <span className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 font-bold group-hover:translate-x-1 transition-transform">
-                      Inspect <ExternalLink size={13} />
-                    </span>
+                    <a
+                      href={proj.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 font-bold group-hover:translate-x-1 transition-transform"
+                    >
+                      Visit Site <ExternalLink size={13} />
+                    </a>
                   </div>
                 </div>
               </motion.div>
