@@ -103,6 +103,38 @@ const FALLBACK_PROJECTS: Project[] = [
       "Performance": "99/100",
       "LCP": "0.4s"
     }
+  },
+  {
+    id: "beautyybyykiki",
+    title: "BeautyybyyKiKi",
+    subtitle: "Luxury Hair Studio Website",
+    category: "Brand & UI",
+    description: "High-fashion website for a professional hair styling brand, with a matte gold and deep black design system, service showcase and booking-ready layout.",
+    detailedOverview: "A premium brand site for a Black-owned hair studio featuring glassmorphism buttons and cards, scroll-triggered reveal animations, a high-resolution braids, twists and locs service gallery, and an email confirmation template. Built with vanilla HTML, CSS and JavaScript and fully responsive.",
+    image: "/projects/beautyybyykiki-cover.jpg",
+    tags: ["HTML5", "CSS3", "JavaScript", "Netlify", "Responsive"],
+    link: "https://beautyybyykiki.com",
+    github: "https://github.com/TOSINIRL/BEAUTYBYKIKI",
+    stats: {
+      "Stack": "Vanilla JS",
+      "Hosting": "Netlify"
+    }
+  },
+  {
+    id: "pure-heart-studios",
+    title: "Pure Heart Studios",
+    subtitle: "Premium Hair Care & Styling",
+    category: "Brand & UI",
+    description: "Clean, conversion-focused website for a braiding and locs studio, with a service menu, stylist profile and image gallery.",
+    detailedOverview: "A responsive studio website presenting braids, twists and starter locs services with a stylist profile, photo gallery and a streamlined booking flow. Built with HTML, CSS and JavaScript and deployed on Netlify.",
+    image: "/projects/pure-heart-studios-cover.jpg",
+    tags: ["HTML5", "CSS3", "JavaScript", "Netlify", "Responsive"],
+    link: "https://pureheartedstudios.netlify.app",
+    github: "https://github.com/TOSINIRL/PUREHEARTSTUDIOS",
+    stats: {
+      "Stack": "Vanilla JS",
+      "Hosting": "Netlify"
+    }
   }
 ];
 
