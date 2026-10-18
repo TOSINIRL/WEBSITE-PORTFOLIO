@@ -214,7 +214,7 @@ export function Work() {
                 onMouseEnter={() => soundEngine.playHover()}
                 className={`px-4 py-2 rounded-xl text-xs font-mono tracking-wider whitespace-nowrap transition-all duration-300 ${
                   selectedCategory === cat
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.25)]'
+                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_15px_rgba(255,62,62,0.25)]'
                     : 'bg-slate-900/60 text-slate-400 border border-white/5 hover:border-white/20 hover:text-white'
                 }`}
               >
@@ -248,7 +248,7 @@ export function Work() {
                 key={proj.id}
                 onClick={() => handleCardClick(proj)}
                 onMouseEnter={() => soundEngine.playHover()}
-                className={`group cursor-pointer rounded-2xl bg-slate-950/80 border border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] flex flex-col justify-between overflow-hidden scanline ${
+                className={`group cursor-pointer rounded-2xl bg-slate-950/80 border border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,62,62,0.15)] flex flex-col justify-between overflow-hidden scanline ${
                   view === 'list' ? 'sm:flex-row sm:items-center p-6 gap-6' : ''
                 }`}
                 initial={{ opacity: 0, y: 30 }}

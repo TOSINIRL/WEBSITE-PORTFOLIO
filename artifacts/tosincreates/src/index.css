@@ -5,6 +5,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Remap the cool accent palettes to the site's orange-red so every accent matches */
+@theme {
+  --color-cyan-50: #fff1ee;
+  --color-cyan-100: #ffe0d9;
+  --color-cyan-200: #ffc2b3;
+  --color-cyan-300: #ff9a85;
+  --color-cyan-400: #ff5a3c;
+  --color-cyan-500: #ff3e3e;
+  --color-cyan-600: #e02e2e;
+  --color-cyan-700: #b82222;
+  --color-cyan-800: #8f1f1f;
+  --color-cyan-900: #6e1d1d;
+  --color-cyan-950: #3a0c0c;
+  --color-indigo-400: #ff5a3c;
+  --color-indigo-500: #ff3e3e;
+}
+
 @theme inline {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));

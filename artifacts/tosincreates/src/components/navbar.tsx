@@ -90,7 +90,7 @@ export function Navbar() {
               onClick={toggleAudio}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-mono transition-all duration-300 ${
                 soundActive
-                  ? 'border-cyan-500/50 bg-cyan-500/10 text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.3)]'
+                  ? 'border-cyan-500/50 bg-cyan-500/10 text-cyan-400 shadow-[0_0_12px_rgba(255,62,62,0.3)]'
                   : 'border-white/10 bg-white/5 text-white/50 hover:text-white hover:border-white/20'
               }`}
               title={soundActive ? 'Mute Cyber Audio FX' : 'Enable Web Audio FX Synth'}

@@ -149,7 +149,7 @@ export function SystemInfra() {
                   key={node.loc}
                   className={`flex justify-between items-center px-4 py-2.5 rounded-xl font-mono text-xs border ${
                     node.active
-                      ? 'bg-cyan-950/40 border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.15)]'
+                      ? 'bg-cyan-950/40 border-cyan-500/40 text-cyan-300 shadow-[0_0_12px_rgba(255,62,62,0.15)]'
                       : 'bg-slate-900/60 border-white/5 text-slate-400'
                   }`}
                 >
