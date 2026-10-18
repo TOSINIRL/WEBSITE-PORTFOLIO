@@ -54,7 +54,6 @@ const FALLBACK_PROJECTS: Project[] = [
   }
 ];
 
-const CATEGORIES = ["All", "Brand & UI"];
 
 export function Work() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -137,27 +136,6 @@ export function Work() {
 
         {/* Filter Bar & Search */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-white/10">
-          {/* Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 no-scrollbar">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  soundEngine.playClick();
-                  setSelectedCategory(cat);
-                }}
-                onMouseEnter={() => soundEngine.playHover()}
-                className={`px-4 py-2 rounded-xl text-xs font-mono tracking-wider whitespace-nowrap transition-all duration-300 ${
-                  selectedCategory === cat
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_15px_rgba(255,62,62,0.25)]'
-                    : 'bg-slate-900/60 text-slate-400 border border-white/5 hover:border-white/20 hover:text-white'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
           {/* Search Input */}
           <div className="relative w-full sm:w-64">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
