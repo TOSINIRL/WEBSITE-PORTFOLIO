@@ -28,7 +28,7 @@ const FALLBACK_PROJECTS: Project[] = [
     description: "High-fashion website for a professional hair styling brand, with a matte gold and deep black design system, service showcase and booking-ready layout.",
     detailedOverview: "A premium brand site for a Black-owned hair studio featuring glassmorphism buttons and cards, scroll-triggered reveal animations, a high-resolution braids, twists and locs service gallery, and an email confirmation template. Built with vanilla HTML, CSS and JavaScript and fully responsive.",
     image: "/projects/beautyybyykiki-cover.jpg",
-    tags: ["HTML5", "CSS3", "JavaScript", "Netlify", "Responsive"],
+    tags: ["Responsive"],
     link: "https://beautyybyykiki.com",
     github: "https://github.com/TOSINIRL/BEAUTYBYKIKI",
     stats: {
@@ -44,7 +44,7 @@ const FALLBACK_PROJECTS: Project[] = [
     description: "Clean, conversion-focused website for a braiding and locs studio, with a service menu, stylist profile and image gallery.",
     detailedOverview: "A responsive studio website presenting braids, twists and starter locs services with a stylist profile, photo gallery and a streamlined booking flow. Built with HTML, CSS and JavaScript and deployed on Netlify.",
     image: "/projects/pure-heart-studios-cover.jpg",
-    tags: ["HTML5", "CSS3", "JavaScript", "Netlify", "Responsive"],
+    tags: ["Responsive"],
     link: "https://pureheartedstudios.netlify.app",
     github: "https://github.com/TOSINIRL/PUREHEARTSTUDIOS",
     stats: {
