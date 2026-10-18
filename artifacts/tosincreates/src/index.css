@@ -275,25 +275,166 @@
   animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* PRELOADER */
+/* PRELOADER - MOB PSYCHO LOADING SCREEN */
+#preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: linear-gradient(180deg, rgba(48, 0, 0, 0.98) 0%, rgba(68, 0, 0, 0.95) 100%), #140000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#preloader::before {
+  content: '';
+  position: fixed;
+  inset: -30vmax;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 62, 62, 0.45) 0%, rgba(255, 62, 62, 0.22) 38%, rgba(255, 62, 62, 0) 78%),
+    radial-gradient(circle at 12% 12%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%),
+    radial-gradient(circle at 88% 12%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%),
+    radial-gradient(circle at 12% 88%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%),
+    radial-gradient(circle at 88% 88%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%);
+  filter: blur(24px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mob-container {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.shigeo-aura {
+  position: fixed;
+  inset: -40vmax;
+  background:
+    radial-gradient(circle at center, rgba(255, 62, 62, 0.65) 0%, rgba(255, 62, 62, 0.38) 34%, rgba(255, 62, 62, 0.08) 56%, rgba(255, 62, 62, 0) 80%),
+    radial-gradient(circle at 50% 30%, rgba(255, 70, 70, 0.3) 0%, rgba(255, 70, 70, 0) 58%);
+  filter: blur(28px);
+  z-index: 1;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.mob-counter {
+  font-size: clamp(8rem, 32vw, 22rem);
+  font-weight: 400;
+  line-height: 0.8;
+  color: #ff3e3e;
+  font-family: 'Anton', sans-serif;
+  letter-spacing: -2px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  text-shadow: 0 0 50px rgba(255, 62, 62, 0.6), 0 0 100px rgba(255, 62, 62, 0.3);
+  will-change: transform, opacity;
+}
+
+.mob-percent {
+  font-size: 0.28em;
+  margin-left: 6px;
+  color: #ff3e3e;
+  font-family: 'Anton', sans-serif;
+}
+
+.mob-status {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: #ff3e3e;
+  text-transform: uppercase;
+  margin-top: 24px;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.status-pulse {
+  width: 8px;
+  height: 8px;
+  background: #ff3e3e;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 10px #ff3e3e;
+}
+
+.status-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid #ff3e3e;
+  border-radius: 50%;
+  animation: status-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0;
+}
+
+@keyframes status-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Jitter / Tremor animations for high Mob energy */
+.mob-intensity-mid .mob-counter {
+  animation: mob-jitter-subtle 0.1s infinite alternate;
+}
+
+.mob-intensity-high .mob-counter {
+  animation: mob-jitter 0.07s infinite alternate;
+}
+
+.mob-intensity-critical .mob-counter {
+  animation: mob-jitter-extreme 0.04s infinite alternate;
+}
+
+@keyframes mob-jitter-subtle {
+  0% { transform: translate(1px, 1px); }
+  100% { transform: translate(-1px, -1px); }
+}
+
+@keyframes mob-jitter {
+  0% { transform: translate(3px, 2px) scale(1.02); }
+  100% { transform: translate(-3px, -2px) scale(0.98); }
+}
+
+@keyframes mob-jitter-extreme {
+  0% { transform: translate(6px, -4px) scale(1.04) rotate(0.6deg); }
+  50% { transform: translate(-6px, 4px) scale(0.97) rotate(-0.5deg); }
+  100% { transform: translate(5px, -3px) scale(1.03) rotate(0.4deg); }
+}
+
 .aura-glow {
-  background: radial-gradient(circle at center, rgba(255, 42, 42, 0.16) 0%, rgba(255, 42, 42, 0) 60%);
-  filter: blur(18px);
+  background: radial-gradient(circle at center, rgba(255, 42, 42, 0.25) 0%, rgba(255, 42, 42, 0) 65%);
+  filter: blur(20px);
   animation: pulseGlow 3s ease-in-out infinite;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 @keyframes pulseGlow {
-
-  0%,
-  100% {
-    opacity: 0.5;
+  0%, 100% {
+    opacity: 0.6;
     transform: scale(1);
   }
-
   50% {
-    opacity: 0.8;
-    transform: scale(1.1);
+    opacity: 0.95;
+    transform: scale(1.15);
   }
 }
 

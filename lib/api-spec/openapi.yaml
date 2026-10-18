@@ -1,15 +1,20 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: API specification for Tosin Creative Hub / Social Nexus
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: projects
+    description: Portfolio projects operations
+  - name: contact
+    description: Contact form operations
+  - name: infra
+    description: System infrastructure metrics operations
 paths:
   /healthz:
     get:
@@ -24,6 +29,68 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /projects:
+    get:
+      operationId: getProjects
+      tags: [projects]
+      summary: Get portfolio projects
+      description: Returns a list of curated creative projects
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit contact inquiry
+      description: Submit a contact message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactRequest"
+      responses:
+        "200":
+          description: Contact message received
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+
+  /system/infra:
+    get:
+      operationId: getSystemInfra
+      tags: [infra]
+      summary: Get system infrastructure metrics
+      description: Returns live infrastructure status, latency, and operational telemetry
+      responses:
+        "200":
+          description: System infrastructure status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SystemInfraMetrics"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +101,109 @@ components:
       required:
         - status
 
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        subtitle:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        detailedOverview:
+          type: string
+        image:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        link:
+          type: string
+        github:
+          type: string
+        featured:
+          type: boolean
+        stats:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - id
+        - title
+        - subtitle
+        - category
+        - description
+        - image
+        - tags
+
+    ContactRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        subject:
+          type: string
+        message:
+          type: string
+      required:
+        - name
+        - email
+        - message
+
+    ContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        timestamp:
+          type: string
+      required:
+        - success
+        - message
+        - timestamp
+
+    SystemInfraMetrics:
+      type: object
+      properties:
+        status:
+          type: string
+        uptime:
+          type: number
+        latencies:
+          type: object
+          properties:
+            YYZ:
+              type: number
+            LDN:
+              type: number
+            TKY:
+              type: number
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              status:
+                type: string
+              ping:
+                type: string
+        cpuLoad:
+          type: number
+        memoryUsage:
+          type: number
+      required:
+        - status
+        - uptime
+        - latencies
+        - services
