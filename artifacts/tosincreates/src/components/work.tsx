@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useQuery } from '@tanstack/react-query';
 import { ExternalLink, Grid2x2, List, Search, Sparkles } from 'lucide-react';
 import { ProjectModal } from './project-modal';
 import { soundEngine } from '@/lib/audio';
@@ -115,19 +114,7 @@ export function Work() {
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [activeProjectModal, setActiveProjectModal] = useState<Project | null>(null);
 
-  const { data: projects = FALLBACK_PROJECTS } = useQuery<Project[]>({
-    queryKey: ['projects'],
-    queryFn: async () => {
-      try {
-        const res = await fetch('/api/projects');
-        if (!res.ok) throw new Error('API offline');
-        return await res.json();
-      } catch {
-        return FALLBACK_PROJECTS;
-      }
-    },
-    staleTime: 60000,
-  });
+  const projects: Project[] = FALLBACK_PROJECTS;
 
   const filteredProjects = projects.filter((project) => {
     const matchesCategory =

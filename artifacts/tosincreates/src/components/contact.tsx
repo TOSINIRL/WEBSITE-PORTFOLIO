@@ -27,29 +27,26 @@ export function Contact() {
     soundEngine.playClick();
 
     try {
-      const res = await fetch('/api/contact', {
+      const body = new URLSearchParams({
+        'form-name': 'contact',
+        'bot-field': '',
+        ...formData,
+      });
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
       });
 
-      const data = await res.json();
+      if (!res.ok) throw new Error(`Form submit failed: ${res.status}`);
 
-      if (res.ok && data.success) {
-        setStatus('success');
-        setResponseMsg(data.message || 'Transmission encrypted and received.');
-        soundEngine.playSuccess();
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setStatus('error');
-        setResponseMsg(data.message || 'Transmission failed. Direct uplink interrupted.');
-      }
-    } catch {
-      // Graceful fallback if backend server is offline during static previews
       setStatus('success');
-      setResponseMsg(`Transmission encrypted & logged locally. Thank you ${formData.name}!`);
+      setResponseMsg(`Thank you ${formData.name}, your message was received. I'll get back to you soon.`);
       soundEngine.playSuccess();
       setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      setStatus('error');
+      setResponseMsg('Transmission failed. Please try again in a moment.');
     }
   };
 
