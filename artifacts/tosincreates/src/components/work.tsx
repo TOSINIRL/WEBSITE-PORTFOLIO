@@ -54,7 +54,7 @@ const FALLBACK_PROJECTS: Project[] = [
   }
 ];
 
-const CATEGORIES = ["All", "Web App", "AI / ML", "Creative Tech", "Brand & UI"];
+const CATEGORIES = ["All", "Brand & UI"];
 
 export function Work() {
   const [selectedCategory, setSelectedCategory] = useState("All");
