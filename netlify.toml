@@ -1,0 +1,13 @@
+[build]
+  command = "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/tosincreates build"
+  publish = "artifacts/tosincreates/dist/public"
+
+[build.environment]
+  PORT = "3000"
+  BASE_PATH = "/"
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
