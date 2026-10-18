@@ -335,10 +335,10 @@
   background:
     radial-gradient(circle at center, rgba(255, 62, 62, 0.65) 0%, rgba(255, 62, 62, 0.38) 34%, rgba(255, 62, 62, 0.08) 56%, rgba(255, 62, 62, 0) 80%),
     radial-gradient(circle at 50% 30%, rgba(255, 70, 70, 0.3) 0%, rgba(255, 70, 70, 0) 58%);
-  filter: blur(28px);
   z-index: 1;
   pointer-events: none;
   will-change: opacity, transform;
+  backface-visibility: hidden;
 }
 
 .mob-counter {
@@ -352,8 +352,9 @@
   display: flex;
   align-items: baseline;
   justify-content: center;
-  text-shadow: 0 0 50px rgba(255, 62, 62, 0.6), 0 0 100px rgba(255, 62, 62, 0.3);
-  will-change: transform, opacity;
+  text-shadow: 0 0 40px rgba(255, 62, 62, 0.55);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .mob-percent {
@@ -419,6 +420,12 @@
 
 .mob-intensity-critical .mob-counter {
   animation: mob-jitter-extreme 0.04s infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mob-intensity-mid .mob-counter,
+  .mob-intensity-high .mob-counter,
+  .mob-intensity-critical .mob-counter { animation: none; }
 }
 
 @keyframes mob-jitter-subtle {
