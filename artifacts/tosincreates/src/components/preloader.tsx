@@ -179,6 +179,9 @@ export function Preloader({ onComplete }: Props) {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+            style={{
+              filter: 'grayscale(1) sepia(1) saturate(5) hue-rotate(315deg) brightness(0.72)',
+            }}
           />
           <div
             aria-hidden="true"
