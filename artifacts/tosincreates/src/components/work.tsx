@@ -96,7 +96,9 @@ export function Work() {
     velocityX: number,
   ) => {
     if (Math.abs(offsetX) < 90 && Math.abs(velocityX) < 500) return;
-    shuffleProjects(offsetX < 0 || velocityX < -500 ? 1 : -1);
+    const direction =
+      Math.abs(offsetX) >= 90 ? (offsetX < 0 ? 1 : -1) : velocityX < 0 ? 1 : -1;
+    shuffleProjects(direction);
   };
 
   const handleCardClick = (project: Project) => {
@@ -145,7 +147,7 @@ export function Work() {
           </div>
           <div className="flex items-center gap-2 text-[10px] font-mono font-bold tracking-[0.2em] text-slate-500 uppercase">
             <MoveHorizontal className="h-4 w-4 text-primary" aria-hidden="true" />
-            Drag to shuffle
+            Swipe left or right to shuffle
           </div>
         </div>
 
@@ -155,7 +157,7 @@ export function Work() {
             NO_PROJECTS_FOUND_MATCHING_FILTER
           </div>
         ) : (
-          <div className="relative mx-auto max-w-5xl px-3 pb-8">
+          <div className="relative mx-auto max-w-md px-3 pb-8">
             {filteredProjects.length > 1 && (
               <>
                 <div
@@ -183,7 +185,7 @@ export function Work() {
                   shuffleProjects(1);
                 }
               }}
-              className="relative z-10 touch-pan-y rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="relative z-10 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <p className="sr-only" aria-live="polite">
                 Project {activeIndex + 1} of {filteredProjects.length}: {activeProject.title}
@@ -193,20 +195,41 @@ export function Work() {
                   key={activeProject.id}
                   custom={exitDirection}
                   variants={{
+                    enter: (direction: number) => ({
+                      x: direction * -64,
+                      y: 14,
+                      rotate: direction * -8,
+                      scale: 0.94,
+                      opacity: 0.65,
+                    }),
                     exit: (direction: number) => ({
-                      x: direction * 700,
-                      rotate: direction * 12,
+                      x: direction * 900,
+                      rotate: direction * 28,
+                      scale: 0.86,
                       opacity: 0,
-                      transition: { duration: 0.28, ease: 'easeIn' },
+                      transition: { duration: 0.38, ease: [0.32, 0.72, 0, 1] },
                     }),
                   }}
-                  initial={{ x: 0, opacity: 1 }}
-                  animate={{ x: 0, opacity: 1 }}
+                  initial="enter"
+                  animate={{
+                    x: 0,
+                    y: 0,
+                    rotate: 0,
+                    scale: 1,
+                    opacity: 1,
+                    transition: {
+                      type: 'spring',
+                      stiffness: 280,
+                      damping: 24,
+                      mass: 0.8,
+                    },
+                  }}
                   exit="exit"
                   drag={filteredProjects.length > 1 ? 'x' : false}
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.75}
-                  whileDrag={{ rotate: 2, scale: 0.98, cursor: 'grabbing' }}
+                  dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
+                  whileDrag={{ rotate: 4, scale: 1.02, cursor: 'grabbing' }}
                   onDragStart={() => {
                     wasDraggedRef.current = true;
                   }}
@@ -227,31 +250,31 @@ export function Work() {
                     handleCardClick(activeProject);
                   }}
                   onMouseEnter={() => soundEngine.playHover()}
-                  className="group relative flex cursor-grab flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-slate-950/90 shadow-[0_20px_70px_rgba(0,0,0,0.5)] active:cursor-grabbing scanline"
+                  className="group relative aspect-[4/5] touch-pan-y cursor-grab select-none overflow-hidden rounded-2xl border border-white/10 bg-slate-950/90 shadow-[0_20px_70px_rgba(0,0,0,0.5)] active:cursor-grabbing scanline"
                 >
-                    {/* Image */}
-                    <div className="relative w-full aspect-[16/10] overflow-hidden border-b border-white/10 bg-slate-900">
+                    {/* Portrait project cover */}
+                    <div className="absolute inset-0 overflow-hidden bg-slate-900">
                       <img
                         src={activeProject.image}
                         alt={activeProject.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-
-                      <div className="absolute top-3 left-3 right-3 flex justify-between items-center">
-                        <span className="font-mono text-[10px] tracking-widest px-2.5 py-1 bg-slate-900/80 backdrop-blur border border-cyan-500/40 text-cyan-300 rounded uppercase font-bold">
-                          {activeProject.category}
-                        </span>
-                        {activeProject.featured && (
-                          <span className="font-mono text-[10px] tracking-widest px-2.5 py-1 bg-red-500/80 text-white rounded uppercase font-bold shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-                            FEATURED
-                          </span>
-                        )}
-                      </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="flex flex-col justify-between flex-1 p-6">
+                    <div className="absolute left-3 right-3 top-3 flex items-center justify-between">
+                      <span className="rounded border border-cyan-500/40 bg-slate-900/80 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-300 backdrop-blur">
+                        {activeProject.category}
+                      </span>
+                      {activeProject.featured && (
+                        <span className="rounded bg-red-500/80 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-white shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                          FEATURED
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Project details overlaid to preserve the portrait card shape */}
+                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                       <div>
                         <h3 className="text-2xl font-display text-white group-hover:text-cyan-300 transition-colors uppercase mb-2">
                           {activeProject.title}
@@ -261,7 +284,7 @@ export function Work() {
                         </p>
                       </div>
 
-                      <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                      <div className="flex items-center justify-between gap-3 border-t border-white/10 pt-4">
                         <div className="flex flex-wrap gap-1.5">
                           {activeProject.tags.slice(0, 3).map((tag) => (
                             <span

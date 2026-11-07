@@ -106,6 +106,21 @@ export function Preloader({ onComplete }: Props) {
     let lastShown = -1;
     let exitTimer: ReturnType<typeof setTimeout> | undefined;
     let doneTimer: ReturnType<typeof setTimeout> | undefined;
+    let fallbackTimer: ReturnType<typeof setTimeout> | undefined;
+    let finished = false;
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      progressRef.current = 1;
+      setCount(100);
+      setIsExploding(true);
+      if (fallbackTimer) clearTimeout(fallbackTimer);
+      exitTimer = setTimeout(() => {
+        setVisible(false);
+        doneTimer = setTimeout(() => onCompleteRef.current(), 600);
+      }, 450);
+    };
 
     const frame = (now: number) => {
       if (!startTs) startTs = now + START_DELAY;
@@ -129,16 +144,14 @@ export function Preloader({ onComplete }: Props) {
         rafId = requestAnimationFrame(frame);
         return;
       }
-      setIsExploding(true);
-      exitTimer = setTimeout(() => {
-        setVisible(false);
-        doneTimer = setTimeout(() => onCompleteRef.current(), 600);
-      }, 450);
+      finish();
     };
     rafId = requestAnimationFrame(frame);
+    fallbackTimer = setTimeout(finish, 5000);
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (fallbackTimer) clearTimeout(fallbackTimer);
       if (exitTimer) clearTimeout(exitTimer);
       if (doneTimer) clearTimeout(doneTimer);
     };
