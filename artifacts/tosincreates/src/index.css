@@ -292,13 +292,13 @@
   animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* PRELOADER - MOB PSYCHO LOADING SCREEN */
+/* PRELOADER */
 #preloader {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100dvh;
-  background: linear-gradient(180deg, rgba(48, 0, 0, 0.98) 0%, rgba(68, 0, 0, 0.95) 100%), #140000;
+  background: #05060a;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -312,11 +312,11 @@
   position: fixed;
   inset: -30vmax;
   background:
-    radial-gradient(circle at 50% 50%, rgba(255, 62, 62, 0.45) 0%, rgba(255, 62, 62, 0.22) 38%, rgba(255, 62, 62, 0) 78%),
-    radial-gradient(circle at 12% 12%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%),
-    radial-gradient(circle at 88% 12%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%),
-    radial-gradient(circle at 12% 88%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%),
-    radial-gradient(circle at 88% 88%, rgba(255, 45, 45, 0.25) 0%, rgba(255, 45, 45, 0) 48%);
+    radial-gradient(circle at 50% 50%, rgba(255, 62, 62, 0.24) 0%, rgba(255, 62, 62, 0.12) 38%, rgba(255, 62, 62, 0) 78%),
+    radial-gradient(circle at 12% 12%, rgba(255, 45, 45, 0.12) 0%, rgba(255, 45, 45, 0) 48%),
+    radial-gradient(circle at 88% 12%, rgba(255, 45, 45, 0.12) 0%, rgba(255, 45, 45, 0) 48%),
+    radial-gradient(circle at 12% 88%, rgba(255, 45, 45, 0.12) 0%, rgba(255, 45, 45, 0) 48%),
+    radial-gradient(circle at 88% 88%, rgba(255, 45, 45, 0.12) 0%, rgba(255, 45, 45, 0) 48%);
   filter: blur(24px);
   z-index: 0;
   pointer-events: none;

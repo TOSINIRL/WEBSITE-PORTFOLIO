@@ -144,12 +144,12 @@ export function Preloader({ onComplete }: Props) {
     };
   }, []);
 
-  // Dynamic status text based on Mob Psycho percentage
+  // Keep the status text in sync with the loading progress.
   const getStatusText = () => {
-    if (count === 100) return '100% UNSTOPPABLE';
-    if (count >= 85) return 'WARNING: AURA OVERLOAD';
-    if (count >= 50) return 'AURA CAPACITY: CRITICAL';
-    return 'SYNCHRONIZING DIGITAL AURA';
+    if (count === 100) return 'SYSTEM ONLINE';
+    if (count >= 85) return 'FINALIZING EXPERIENCE';
+    if (count >= 50) return 'LOADING ASSETS';
+    return 'INITIALIZING PORTFOLIO';
   };
 
   // Determine shake intensity class based on count
@@ -185,7 +185,7 @@ export function Preloader({ onComplete }: Props) {
             className="absolute inset-0 z-[1] pointer-events-none"
             style={{
               background:
-                'linear-gradient(180deg, rgba(24, 15, 7, 0.46) 0%, rgba(12, 7, 3, 0.72) 100%)',
+                'linear-gradient(180deg, rgba(5, 6, 10, 0.46) 0%, rgba(5, 6, 10, 0.72) 100%)',
             }}
           />
 
@@ -214,7 +214,7 @@ export function Preloader({ onComplete }: Props) {
             />
           )}
 
-          {/* Mob Psycho Main Container */}
+          {/* Portfolio loading interface */}
           <div className="mob-container relative z-10 flex flex-col items-center justify-center">
             
             {/* Percentage Counter */}
