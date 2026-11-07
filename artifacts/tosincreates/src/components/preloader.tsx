@@ -26,7 +26,7 @@ export function Preloader({ onComplete }: Props) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     let width = 0;
     let height = 0;
     const resize = () => {
@@ -55,7 +55,7 @@ export function Preloader({ onComplete }: Props) {
     };
     const sprites = { red: makeSprite('#ff3e3e'), white: makeSprite('#ffffff') };
 
-    const particles = Array.from({ length: 45 }, () => ({
+    const particles = Array.from({ length: 24 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height + height,
       size: Math.random() * 2.5 + 1,
@@ -179,6 +179,7 @@ export function Preloader({ onComplete }: Props) {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+            fetchPriority="high"
             style={{
               filter: 'grayscale(1) sepia(1) saturate(5) hue-rotate(315deg) brightness(0.72)',
             }}
