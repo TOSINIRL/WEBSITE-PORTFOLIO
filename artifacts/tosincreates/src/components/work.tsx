@@ -1,6 +1,13 @@
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ExternalLink, MoveHorizontal, Search, Sparkles } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  ExternalLink,
+  MoveHorizontal,
+  Search,
+  Sparkles,
+} from 'lucide-react';
 import { ProjectModal } from './project-modal';
 import { soundEngine } from '@/lib/audio';
 
@@ -157,16 +164,38 @@ export function Work() {
             NO_PROJECTS_FOUND_MATCHING_FILTER
           </div>
         ) : (
-          <div className="relative mx-auto max-w-md px-3 pb-8">
+          <div className="relative mx-auto max-w-xl px-0 pb-8">
             {filteredProjects.length > 1 && (
               <>
+                <button
+                  type="button"
+                  aria-label="Previous project"
+                  onClick={() => {
+                    soundEngine.playClick();
+                    shuffleProjects(-1);
+                  }}
+                  className="absolute left-2 top-[42%] z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-slate-950/90 text-white shadow-lg transition hover:scale-110 hover:border-primary hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-0"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next project"
+                  onClick={() => {
+                    soundEngine.playClick();
+                    shuffleProjects(1);
+                  }}
+                  className="absolute right-2 top-[42%] z-30 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-slate-950/90 text-white shadow-lg transition hover:scale-110 hover:border-primary hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-0"
+                >
+                  <ArrowRight className="h-5 w-5" />
+                </button>
                 <div
                   aria-hidden="true"
-                  className="absolute inset-x-7 inset-y-0 translate-y-4 rounded-2xl border border-white/10 bg-slate-900/80"
+                  className="absolute inset-x-[15%] inset-y-0 translate-y-4 rounded-2xl border border-white/10 bg-slate-900/80"
                 />
                 <div
                   aria-hidden="true"
-                  className="absolute inset-x-4 inset-y-0 translate-y-2 rounded-2xl border border-white/10 bg-slate-950/90"
+                  className="absolute inset-x-[12%] inset-y-0 translate-y-2 rounded-2xl border border-white/10 bg-slate-950/90"
                 />
               </>
             )}
@@ -185,7 +214,7 @@ export function Work() {
                   shuffleProjects(1);
                 }
               }}
-              className="relative z-10 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="relative z-10 mx-auto w-full max-w-md rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <p className="sr-only" aria-live="polite">
                 Project {activeIndex + 1} of {filteredProjects.length}: {activeProject.title}
