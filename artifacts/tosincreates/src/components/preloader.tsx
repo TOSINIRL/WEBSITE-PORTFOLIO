@@ -174,6 +174,21 @@ export function Preloader({ onComplete }: Props) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className={`fixed inset-0 bg-[#0c0202] z-[9999] flex flex-col items-center justify-center overflow-hidden select-none ${getIntensityClass()}`}
         >
+          <img
+            src={`${import.meta.env.BASE_URL}loading.gif`}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-[1] pointer-events-none"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(24, 15, 7, 0.46) 0%, rgba(12, 7, 3, 0.72) 100%)',
+            }}
+          />
+
           {/* Canvas for psychic energy particles */}
           <canvas ref={canvasRef} className="absolute inset-0 z-[1] pointer-events-none" />
 
