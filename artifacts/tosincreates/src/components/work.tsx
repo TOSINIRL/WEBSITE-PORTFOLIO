@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Grid2x2, List, Search, Sparkles } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ExternalLink, MoveHorizontal, Search, Sparkles } from 'lucide-react';
 import { ProjectModal } from './project-modal';
 import { soundEngine } from '@/lib/audio';
 
@@ -58,8 +58,11 @@ const FALLBACK_PROJECTS: Project[] = [
 export function Work() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [view, setView] = useState<'grid' | 'list'>('grid');
   const [activeProjectModal, setActiveProjectModal] = useState<Project | null>(null);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const [exitDirection, setExitDirection] = useState(-1);
+  const wasDraggedRef = useRef(false);
+  const dragClickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const projects: Project[] = FALLBACK_PROJECTS;
 
@@ -75,6 +78,26 @@ export function Work() {
       project.tags.some((tag) => tag.toLowerCase().includes(query));
     return matchesCategory && matchesSearch;
   });
+  const activeIndex = filteredProjects.length
+    ? activeProjectIndex % filteredProjects.length
+    : 0;
+  const activeProject = filteredProjects[activeIndex];
+
+  const shuffleProjects = (direction: -1 | 1) => {
+    if (filteredProjects.length < 2) return;
+    setExitDirection(direction === 1 ? -1 : 1);
+    setActiveProjectIndex((current) =>
+      (current + direction + filteredProjects.length) % filteredProjects.length,
+    );
+  };
+
+  const handleSwipeEnd = (
+    offsetX: number,
+    velocityX: number,
+  ) => {
+    if (Math.abs(offsetX) < 90 && Math.abs(velocityX) < 500) return;
+    shuffleProjects(offsetX < 0 || velocityX < -500 ? 1 : -1);
+  };
 
   const handleCardClick = (project: Project) => {
     soundEngine.playClick();
@@ -105,33 +128,6 @@ export function Work() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {/* View Switcher */}
-            <div className="flex bg-slate-900/90 border border-white/10 p-1 rounded-xl">
-              <button
-                className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono tracking-wider rounded-lg transition-colors ${
-                  view === 'grid' ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
-                }`}
-                onClick={() => {
-                  soundEngine.playClick();
-                  setView('grid');
-                }}
-              >
-                <Grid2x2 size={14} /> GRID
-              </button>
-              <button
-                className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono tracking-wider rounded-lg transition-colors ${
-                  view === 'list' ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
-                }`}
-                onClick={() => {
-                  soundEngine.playClick();
-                  setView('list');
-                }}
-              >
-                <List size={14} /> LIST
-              </button>
-            </div>
-          </div>
         </motion.div>
 
         {/* Filter Bar & Search */}
@@ -147,90 +143,159 @@ export function Work() {
               className="w-full bg-slate-900/80 border border-white/10 focus:border-cyan-500/50 rounded-xl pl-10 pr-4 py-2 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-all"
             />
           </div>
+          <div className="flex items-center gap-2 text-[10px] font-mono font-bold tracking-[0.2em] text-slate-500 uppercase">
+            <MoveHorizontal className="h-4 w-4 text-primary" aria-hidden="true" />
+            Drag to shuffle
+          </div>
         </div>
 
-        {/* Projects Grid / List */}
+        {/* Swipeable project deck */}
         {filteredProjects.length === 0 ? (
           <div className="text-center py-16 text-slate-500 font-mono text-sm">
             NO_PROJECTS_FOUND_MATCHING_FILTER
           </div>
         ) : (
-          <div className={`grid gap-8 ${view === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
-            {filteredProjects.map((proj, idx) => (
-              <motion.div
-                key={proj.id}
-                onClick={() => handleCardClick(proj)}
-                onMouseEnter={() => soundEngine.playHover()}
-                className={`group cursor-pointer rounded-2xl bg-slate-950/80 border border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,62,62,0.15)] flex flex-col justify-between overflow-hidden scanline ${
-                  view === 'list' ? 'sm:flex-row sm:items-center p-6 gap-6' : ''
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.6, delay: (idx % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {/* Image Wrap */}
+          <div className="relative mx-auto max-w-5xl px-3 pb-8">
+            {filteredProjects.length > 1 && (
+              <>
                 <div
-                  className={`relative overflow-hidden bg-slate-900 ${
-                    view === 'list'
-                      ? 'w-full sm:w-1/3 aspect-[16/10] rounded-xl'
-                      : 'w-full aspect-[16/10] border-b border-white/10'
-                  }`}
+                  aria-hidden="true"
+                  className="absolute inset-x-7 inset-y-0 translate-y-4 rounded-2xl border border-white/10 bg-slate-900/80"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-x-4 inset-y-0 translate-y-2 rounded-2xl border border-white/10 bg-slate-950/90"
+                />
+              </>
+            )}
+
+            <div
+              role="region"
+              aria-roledescription="card carousel"
+              aria-label="Projects. Drag a card left or right to browse."
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === 'ArrowLeft') {
+                  event.preventDefault();
+                  shuffleProjects(-1);
+                } else if (event.key === 'ArrowRight') {
+                  event.preventDefault();
+                  shuffleProjects(1);
+                }
+              }}
+              className="relative z-10 touch-pan-y rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <p className="sr-only" aria-live="polite">
+                Project {activeIndex + 1} of {filteredProjects.length}: {activeProject.title}
+              </p>
+              <AnimatePresence initial={false} mode="wait" custom={exitDirection}>
+                <motion.div
+                  key={activeProject.id}
+                  custom={exitDirection}
+                  variants={{
+                    exit: (direction: number) => ({
+                      x: direction * 700,
+                      rotate: direction * 12,
+                      opacity: 0,
+                      transition: { duration: 0.28, ease: 'easeIn' },
+                    }),
+                  }}
+                  initial={{ x: 0, opacity: 1 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit="exit"
+                  drag={filteredProjects.length > 1 ? 'x' : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.75}
+                  whileDrag={{ rotate: 2, scale: 0.98, cursor: 'grabbing' }}
+                  onDragStart={() => {
+                    wasDraggedRef.current = true;
+                  }}
+                  onDragEnd={(_, info) => {
+                    handleSwipeEnd(info.offset.x, info.velocity.x);
+                    dragClickTimeoutRef.current = setTimeout(() => {
+                      wasDraggedRef.current = false;
+                    }, 150);
+                  }}
+                  onClick={() => {
+                    if (wasDraggedRef.current) {
+                      wasDraggedRef.current = false;
+                      if (dragClickTimeoutRef.current) {
+                        clearTimeout(dragClickTimeoutRef.current);
+                      }
+                      return;
+                    }
+                    handleCardClick(activeProject);
+                  }}
+                  onMouseEnter={() => soundEngine.playHover()}
+                  className="group relative flex cursor-grab flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-slate-950/90 shadow-[0_20px_70px_rgba(0,0,0,0.5)] active:cursor-grabbing scanline"
                 >
-                  <img
-                    src={proj.image}
-                    alt={proj.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                  
-                  <div className="absolute top-3 left-3 right-3 flex justify-between items-center">
-                    <span className="font-mono text-[10px] tracking-widest px-2.5 py-1 bg-slate-900/80 backdrop-blur border border-cyan-500/40 text-cyan-300 rounded uppercase font-bold">
-                      {proj.category}
-                    </span>
-                    {proj.featured && (
-                      <span className="font-mono text-[10px] tracking-widest px-2.5 py-1 bg-red-500/80 text-white rounded uppercase font-bold shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-                        FEATURED
-                      </span>
-                    )}
-                  </div>
-                </div>
+                    {/* Image */}
+                    <div className="relative w-full aspect-[16/10] overflow-hidden border-b border-white/10 bg-slate-900">
+                      <img
+                        src={activeProject.image}
+                        alt={activeProject.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 
-                {/* Content */}
-                <div className={`flex flex-col justify-between flex-1 ${view === 'list' ? 'w-full sm:w-2/3' : 'p-6'}`}>
-                  <div>
-                    <h3 className="text-2xl font-display text-white group-hover:text-cyan-300 transition-colors uppercase mb-2">
-                      {proj.title}
-                    </h3>
-                    <p className="text-slate-400 text-sm font-sans line-clamp-2 leading-relaxed mb-6">
-                      {proj.description}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <div className="flex flex-wrap gap-1.5">
-                      {proj.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-[10px] tracking-wider px-2 py-0.5 bg-slate-900 border border-white/10 text-slate-400 rounded"
-                        >
-                          {tag}
+                      <div className="absolute top-3 left-3 right-3 flex justify-between items-center">
+                        <span className="font-mono text-[10px] tracking-widest px-2.5 py-1 bg-slate-900/80 backdrop-blur border border-cyan-500/40 text-cyan-300 rounded uppercase font-bold">
+                          {activeProject.category}
                         </span>
-                      ))}
+                        {activeProject.featured && (
+                          <span className="font-mono text-[10px] tracking-widest px-2.5 py-1 bg-red-500/80 text-white rounded uppercase font-bold shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                            FEATURED
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <a
-                      href={proj.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 font-bold group-hover:translate-x-1 transition-transform"
-                    >
-                      Visit Site <ExternalLink size={13} />
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+
+                    {/* Content */}
+                    <div className="flex flex-col justify-between flex-1 p-6">
+                      <div>
+                        <h3 className="text-2xl font-display text-white group-hover:text-cyan-300 transition-colors uppercase mb-2">
+                          {activeProject.title}
+                        </h3>
+                        <p className="text-slate-400 text-sm font-sans line-clamp-2 leading-relaxed mb-6">
+                          {activeProject.description}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                        <div className="flex flex-wrap gap-1.5">
+                          {activeProject.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="font-mono text-[10px] tracking-wider px-2 py-0.5 bg-slate-900 border border-white/10 text-slate-400 rounded"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <a
+                          href={activeProject.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 font-bold group-hover:translate-x-1 transition-transform"
+                        >
+                          Visit Site <ExternalLink size={13} />
+                        </a>
+                      </div>
+                    </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <div className="relative z-10 mt-4 flex justify-center gap-1.5" aria-hidden="true">
+              {filteredProjects.map((project, index) => (
+                <span
+                  key={project.id}
+                  className={`h-1 rounded-full transition-all duration-300 ${
+                    index === activeIndex ? 'w-7 bg-primary' : 'w-1.5 bg-white/25'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>
